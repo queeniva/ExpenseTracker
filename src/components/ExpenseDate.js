@@ -1,8 +1,9 @@
 import './ExpenseDate.css'
 
 function ExpenseDate(props){
-    const month = props.date.toLocaleString('en-US', {month:'long'} );
-    const day =props.date.toLocaleString('en-US', {day:'2-digit'} );
+    // var date = new Date(Date.UTC(2020 , 0, 25, 4, 0, 0))
+    const month = props.date.toLocaleDateString('en-US', {month:'long'} );
+    const day =props.date.toLocaleDateString('en-US', {day:'2-digit'} );
     const year = props.date.getFullYear();
 
 
