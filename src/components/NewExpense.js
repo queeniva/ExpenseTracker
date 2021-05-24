@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './NewExpense.css'
 import ExpenseForm from './ExpenseForm'
 
-function NewExpense (props){
-const saveExpenseDataHandler = (enteredExpenseData) => {
-    const expenseData = {
-        ...enteredExpenseData,
-        id: Math.random().toString()
+
+function NewExpense(props) {
+    const [options, changeOptions] = useState(false)
+
+    const handleClick = () => {
+        changeOptions(!options)
+    }
+
+    const handleCancel = () =>{
+        changeOptions(!options)
+    }
+
+    const saveExpenseDataHandler = (enteredExpenseData) => {
+        const expenseData = {
+            ...enteredExpenseData,
+            id: Math.random().toString()
+        };
+        props.onAddExpense(expenseData);
     };
-    props.onAddExpense(expenseData);
-};
-    return(
+    return (
         <div className="new-expense">
-            <ExpenseForm onSaveExpenseData = {saveExpenseDataHandler} />
+            {!options && <button onClick={handleClick}>Add New Expense</button>}
+            {options && <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel = {handleCancel}/>}
         </div>
     );
 }

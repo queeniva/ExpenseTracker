@@ -5,26 +5,26 @@ import './Expenses.css'
 
 function Expenses(props) {
 
-  const [filteredYear, setFilteredYear] = useState('2020')
+  const [filteredYear, setFilteredYear] = useState('2021')
 
   const getYear = (selectedYear) => {
     setFilteredYear(selectedYear)
     console.log(selectedYear)
   }
-const filteredExpenses = props.expenses.filter(expense =>{
-  return expense.date.getFullYear().toString() === filteredYear;
-});
+  const filteredExpenses = props.expenses.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
 
   return (
     <div>
-    <ExpensesFilter
+      <div className="expenses">
+      <ExpensesFilter
         selected={filteredYear}
         onSelectYear={getYear}
       />
-      <div className="expenses">
         {filteredExpenses.map((expenses) => (
           <ExpenseItem
-          key = {expenses.id}
+            key={expenses.id}
             title={expenses.title}
             amount={expenses.amount}
             date={expenses.date}
@@ -36,4 +36,3 @@ const filteredExpenses = props.expenses.filter(expense =>{
 }
 export default Expenses;
 
-//192.168.196.205.
